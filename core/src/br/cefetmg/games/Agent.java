@@ -3,11 +3,14 @@ package br.cefetmg.games;
 import br.cefetmg.games.movement.Position;
 import br.cefetmg.games.movement.Steering;
 import br.cefetmg.games.movement.Target;
-import br.cefetmg.games.movement.behavior.Algorithm;
+import br.cefetmg.games.movement.behavior.SteeringAlgorithm;
 import br.cefetmg.games.movement.behavior.Seek;
 import br.cefetmg.games.pathfinding.TileConnection;
 import br.cefetmg.games.pathfinding.TileNode;
+import br.cefetmg.games.pathfinding.algorithm.AStar;
+import com.badlogic.gdx.ai.pfa.Connection;
 import com.badlogic.gdx.ai.pfa.DefaultGraphPath;
+import com.badlogic.gdx.ai.pfa.GraphPath;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
@@ -20,10 +23,13 @@ import java.util.Iterator;
 public class Agent {
 
     public Position position;
-    private Algorithm behavior;
-    private final IndexedAStarPathFinder pathFinder;
-    private final DefaultGraphPath<TileConnection> path;
-    private Iterator<TileConnection> pathIterator;
+    private SteeringAlgorithm behavior;
+//    private final IndexedAStarPathFinder pathFinder;
+    private final AStar pathFinder;
+//    private final DefaultGraphPath<TileConnection> path;
+    private final GraphPath<Connection<TileNode>> path;
+//    private Iterator<TileConnection> pathIterator;
+    private Iterator<Connection<TileNode>> pathIterator;
     private final Target steeringTarget;
     private final float fullSpeed = 75;
     private static final float MIN_DISTANCE_CONSIDERED_ZERO_SQUARED = (float) Math.pow(2.0f, 2);
@@ -36,7 +42,8 @@ public class Agent {
         this.steeringTarget = new Target(position);
         this.behavior = new Seek(fullSpeed);
         this.behavior.target = steeringTarget;
-        this.pathFinder = new IndexedAStarPathFinder(LevelManager.graph, false);
+//        this.pathFinder = new IndexedAStarPathFinder(LevelManager.graph, false);
+        this.pathFinder = new AStar(LevelManager.graph, new EuclideanDistanceHeuristic());
         this.path = new DefaultGraphPath<>();
         this.pathIterator = this.path.iterator();
     }
@@ -49,7 +56,7 @@ public class Agent {
             // procurar se temos outra conexão na nossa rota
             // e, caso afirmativo, definir o nó de chegada como novo target
             if (shouldMove = pathIterator.hasNext()) {
-                TileConnection nextConnection = pathIterator.next();
+                TileConnection nextConnection = (TileConnection) pathIterator.next();
                 TileNode nextNode = nextConnection.getToNode();
                 steeringTarget.coords = nextNode.getPosition();
 
@@ -70,16 +77,17 @@ public class Agent {
         TileNode targetNode = LevelManager.graph.getNodeAtCoordinates(x, y);
 
         path.clear();
-        pathFinder.searchConnectionPath(startNode, targetNode, new EuclideanDistanceHeuristic(), path);
+//        pathFinder.searchConnectionPath(startNode, targetNode, new EuclideanDistanceHeuristic(), path);
 //        pathFinder.searchConnectionPath(startNode, targetNode, new AlwaysZeroHeuristic(), path);
+        pathFinder.search(startNode, targetNode, path);
         pathIterator = path.iterator();
     }
 
-    public void setBehavior(Algorithm behavior) {
+    public void setBehavior(SteeringAlgorithm behavior) {
         this.behavior = behavior;
     }
 
-    public Algorithm getBehavior() {
+    public SteeringAlgorithm getBehavior() {
         return behavior;
     }
 

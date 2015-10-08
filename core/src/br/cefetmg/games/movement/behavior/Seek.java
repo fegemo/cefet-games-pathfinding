@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author Flávio Coutinho <fegemo@gmail.com>
  */
-public class Seek extends Algorithm {
+public class Seek extends SteeringAlgorithm {
 
     private static final char NAME = 's';
     
