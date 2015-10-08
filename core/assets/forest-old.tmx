@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="32" tileheight="32" nextobjectid="7">
+ <tileset firstgid="1" name="forest" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="forest_tiles.png" width="512" height="512"/>
+  <terraintypes>
+   <terrain name="Buraco" tile="-1"/>
+   <terrain name="Agua" tile="-1"/>
+  </terraintypes>
+  <tile id="6" terrain=",,,0"/>
+  <tile id="7" terrain=",,0,0"/>
+  <tile id="8" terrain=",,0,"/>
+  <tile id="9" terrain=",,,0"/>
+  <tile id="21" terrain="0,,,"/>
+  <tile id="22" terrain=",0,,0"/>
+  <tile id="23" terrain="0,0,0,0"/>
+  <tile id="24" terrain="0,,0,"/>
+  <tile id="25" terrain=",,0,"/>
+  <tile id="37" terrain=",0,,"/>
+  <tile id="38" terrain=",0,,"/>
+  <tile id="39" terrain="0,0,,"/>
+  <tile id="40" terrain="0,,,"/>
+  <tile id="116" terrain=",,,1"/>
+  <tile id="117" terrain=",,1,1"/>
+  <tile id="118" terrain=",,1,"/>
+  <tile id="132" terrain=",1,,1"/>
+  <tile id="133" terrain="1,1,1,1"/>
+  <tile id="134" terrain="1,,1,"/>
+  <tile id="148" terrain=",1,,"/>
+  <tile id="149" terrain="1,1,,"/>
+  <tile id="150" terrain="1,,,"/>
+  <tile id="164" terrain="1,,,"/>
+  <tile id="165" terrain=",1,,"/>
+  <tile id="180" terrain=",,1,"/>
+  <tile id="181" terrain=",,,1"/>
+ </tileset>
+ <layer name="chao" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztw0ENAAAMA6Grf9NzsRckrJqqqurDA5vdAyE=
+  </data>
+ </layer>
+ <layer name="objetos" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJydVltOwzAQtEQRpR/wBxRV4g/oT34itTxuwY3oDeAGcAM4IWvhEath1o4z0iht7Hhnx7uJU0ppnzTejO/BWMaT8bkyHq2b8Wo8uN8fxk9xbWEh1lwEc2sY6L/PPf/+Mn6LKz/n82L4NU+MS+OpmBetMYh4GWdu7Xz1/vEzXkO0Xsal8cp4KzROzSOC9xPxp+7ZpsS8KPqgMdKAPNYd+qCxVvsKyAUxmUqD93mZ/ufxEsRSNfJgfJwwz+tbGe8LtyLOnfGa8qj5DcC/jRjbufvs80Axs2d4z4wiH8xHDl6r93tHGs4L5wIxt0UX0Kob773qLeCmMKP2HlWY2pOq93m/o7qsYU9XBvdk7Z2pxlVN8n73euZ7x+9tRmtPeXwUGldJ9xfXJXJteQhwf7W89HN8La5prei70PJC9XvP834O64OuSFsPpvgEROcc6Iv2tgf8/Zvz/WFwHQMj/efYvf6q785cIHbrbBnF9tq5txhRDeD+Ufr15jj91d2c804LkY6oBvg+NGXiXNR73qlhSi3WasD3CZ81fgCn1UvD
+  </data>
+ </layer>
+</map>

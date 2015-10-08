@@ -1,0 +1,1171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="14" tilewidth="32" tileheight="32" nextobjectid="4">
+ <tileset firstgid="1" name="forest" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="forest_tiles.png" width="512" height="512"/>
+  <terraintypes>
+   <terrain name="grass" tile="-1"/>
+   <terrain name="hole" tile="-1"/>
+   <terrain name="water" tile="-1"/>
+  </terraintypes>
+  <tile id="0" terrain="0,0,0,0">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="2" terrain="0,0,0,">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="3" terrain="0,0,,">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="4" terrain="0,0,,0">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="6" terrain="0,0,0,1">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="7" terrain="0,0,1,1">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="8" terrain="0,0,1,0">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="9" terrain="1,1,1,">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="10" terrain="2,2,2,2">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="10" duration="500"/>
+    <frame tileid="11" duration="500"/>
+    <frame tileid="12" duration="500"/>
+    <frame tileid="11" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="18" terrain="0,,0,">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="20" terrain=",0,,0">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="21" terrain="0,1,1,1">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="22" terrain="0,1,0,1">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="23" terrain="1,1,1,1">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="24" terrain="1,0,1,0">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="25" terrain="1,1,0,1">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="34" terrain="0,,0,0">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="35" terrain=",,0,0">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="36" terrain=",0,0,0">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="37" terrain="1,0,1,1">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="38" terrain="0,1,0,0">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="39" terrain="1,1,0,0">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="40" terrain="1,0,0,0">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="45">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="47">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="49">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="50">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="51">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="52">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="53">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="54">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="55">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="57">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="58">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="59">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="60">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="61">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="62">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="63">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="64" terrain=",,2,2">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="64" duration="500"/>
+    <frame tileid="65" duration="500"/>
+    <frame tileid="66" duration="500"/>
+    <frame tileid="65" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="67" terrain="2,,2,">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="67" duration="500"/>
+    <frame tileid="68" duration="500"/>
+    <frame tileid="69" duration="500"/>
+    <frame tileid="68" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="68">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="69">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="70" terrain="2,2,,">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="70" duration="500"/>
+    <frame tileid="71" duration="500"/>
+    <frame tileid="72" duration="500"/>
+    <frame tileid="71" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="71">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="72">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="73" terrain=",2,,2">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="73" duration="500"/>
+    <frame tileid="74" duration="500"/>
+    <frame tileid="75" duration="500"/>
+    <frame tileid="74" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="74">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="75">
+   <properties>
+    <property name="cost" value="5"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="76">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="77">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="79">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="80">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="81">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+   <animation>
+    <frame tileid="82" duration="300"/>
+    <frame tileid="83" duration="300"/>
+   </animation>
+  </tile>
+  <tile id="82">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="83">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="84">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="85">
+   <properties>
+    <property name="cost_overrider" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="86">
+   <properties>
+    <property name="cost_overrider" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="87">
+   <properties>
+    <property name="cost_overrider" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="88">
+   <properties>
+    <property name="cost_overrider" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="89">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="90">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="91">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="92">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="93">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="95">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="96">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="97">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="98">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="99">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="100" terrain="0,0,0,0">
+   <properties>
+    <property name="cost" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="101">
+   <properties>
+    <property name="cost_overrider" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="102">
+   <properties>
+    <property name="cost_overrider" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="103">
+   <properties>
+    <property name="cost_overrider" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="104">
+   <properties>
+    <property name="cost_overrider" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="105">
+   <properties>
+    <property name="cost_overrider" value="1"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="106">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="107">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="108">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="109">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="110">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="111">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="112">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="113">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="114">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="115">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="116" terrain="0,0,0,2">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="116" duration="500"/>
+    <frame tileid="119" duration="500"/>
+    <frame tileid="138" duration="500"/>
+    <frame tileid="119" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="117" terrain="0,0,2,2">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="117" duration="500"/>
+    <frame tileid="120" duration="500"/>
+    <frame tileid="139" duration="500"/>
+    <frame tileid="120" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="118" terrain="0,0,2,0">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="118" duration="500"/>
+    <frame tileid="121" duration="500"/>
+    <frame tileid="140" duration="500"/>
+    <frame tileid="121" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="119">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="120">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="121">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="122">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="123">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="124">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="125">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="126">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="127">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="128">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="129">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="130">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="131">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="132" terrain="0,2,0,2">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="132" duration="500"/>
+    <frame tileid="135" duration="500"/>
+    <frame tileid="154" duration="500"/>
+    <frame tileid="135" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="133" terrain="2,2,2,2">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="133" duration="500"/>
+    <frame tileid="136" duration="500"/>
+    <frame tileid="155" duration="500"/>
+    <frame tileid="136" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="134" terrain="2,0,2,0">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="134" duration="500"/>
+    <frame tileid="137" duration="500"/>
+    <frame tileid="156" duration="500"/>
+    <frame tileid="137" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="135">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="136">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="137">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="138">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="139">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="140">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="141">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="142">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="143">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="144">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="145">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="146">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="147">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="148" terrain="0,2,0,0">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="148" duration="500"/>
+    <frame tileid="151" duration="500"/>
+    <frame tileid="170" duration="500"/>
+    <frame tileid="151" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="149" terrain="2,2,0,0">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="149" duration="500"/>
+    <frame tileid="152" duration="500"/>
+    <frame tileid="171" duration="500"/>
+    <frame tileid="152" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="150" terrain="2,0,0,0">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="150" duration="500"/>
+    <frame tileid="153" duration="500"/>
+    <frame tileid="172" duration="500"/>
+    <frame tileid="153" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="151">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="152">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="153">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="154">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="155">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="156">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="157">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="158">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="159">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="160">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="161">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="162">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="163">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="164" terrain="0,2,2,2">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="164" duration="500"/>
+    <frame tileid="166" duration="500"/>
+    <frame tileid="168" duration="500"/>
+    <frame tileid="166" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="165" terrain="2,0,2,2">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="165" duration="500"/>
+    <frame tileid="167" duration="500"/>
+    <frame tileid="169" duration="500"/>
+    <frame tileid="167" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="166">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="167">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="168">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="169">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="170">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="171">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="172">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="173">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="174">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="175">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="176">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="177">
+   <properties>
+    <property name="obstacle" value="true"/>
+   </properties>
+  </tile>
+  <tile id="178">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="179">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="180" terrain="2,2,0,2">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="180" duration="500"/>
+    <frame tileid="182" duration="500"/>
+    <frame tileid="184" duration="500"/>
+    <frame tileid="182" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="181" terrain="2,2,2,0">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="181" duration="500"/>
+    <frame tileid="183" duration="500"/>
+    <frame tileid="185" duration="500"/>
+    <frame tileid="183" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="182">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="183">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="184">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="185">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="186">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+   <animation>
+    <frame tileid="186" duration="500"/>
+    <frame tileid="187" duration="500"/>
+    <frame tileid="188" duration="500"/>
+    <frame tileid="187" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="187">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="188">
+   <properties>
+    <property name="cost" value="9"/>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="189">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="190">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+  <tile id="191">
+   <properties>
+    <property name="obstacle" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="floor" width="40" height="14">
+  <data encoding="base64">
+   ZQAAAAEAAAABAAAAAQAAAGUAAAABAAAAAQAAAGUAAACFAAAACwAAAIcAAAABAAAAhQAAAIYAAACHAAAAAQAAACcAAAAoAAAAKAAAACkAAAABAAAAZQAAAGUAAABlAAAAAQAAAAEAAABlAAAAZQAAAAEAAACFAAAAhgAAAKYAAAB3AAAAAQAAAAEAAAABAAAAZQAAAGUAAAABAAAAZQAAAAEAAABlAAAAdQAAAHcAAAABAAAAAQAAAHUAAAB2AAAApQAAAAsAAACmAAAAdgAAAKUAAAALAAAAhwAAAGUAAABlAAAAAQAAAAEAAABlAAAAAQAAAAcAAAAIAAAACQAAAGUAAABlAAAAZQAAAAEAAABlAAAAlQAAALUAAAALAAAAhwAAAGUAAABlAAAAAQAAAGUAAABlAAAAZQAAAGUAAAABAAAAZQAAAIUAAACmAAAAdwAAAGUAAACFAAAACwAAALYAAAC1AAAAtgAAAJYAAACWAAAAlgAAAJcAAABlAAAAAQAAAAEAAABlAAAAZQAAAGUAAAAXAAAAGAAAACYAAAAJAAAAZQAAAAEAAABlAAAAZQAAAHUAAAClAAAAtgAAAJcAAABlAAAAAQAAAAEAAABlAAAAAQAAAGUAAABlAAAAZQAAAAEAAACVAAAAlgAAAJcAAABlAAAAlQAAAJYAAACXAAAAhQAAAIcAAAAHAAAACQAAAAEAAABlAAAAAQAAAAEAAABlAAAAdQAAAHYAAAB3AAAAFwAAABgAAAAYAAAAJgAAAAgAAAAJAAAAZQAAAAEAAACFAAAAhgAAAIcAAABlAAAAZQAAAGUAAABlAAAAAQAAAGUAAABlAAAAAQAAAAEAAABlAAAAZQAAAGUAAAABAAAAAQAAAAEAAABlAAAAdQAAAKUAAACHAAAAJwAAACkAAABlAAAAZQAAAGUAAABlAAAAdQAAAKUAAAALAAAAhwAAACcAAAAaAAAAGAAAABgAAAAYAAAAGQAAAAEAAAB1AAAApQAAALYAAACXAAAAZQAAAGUAAABlAAAAAQAAAGUAAABlAAAAZQAAAAEAAAABAAAAZQAAAAEAAABlAAAAAQAAAAEAAAABAAAAAQAAAIUAAACGAAAAhwAAAGUAAABlAAAAAQAAAAEAAABlAAAAZQAAAIUAAACGAAAAtgAAAJcAAABlAAAAJwAAACgAAAAoAAAAKAAAACkAAAABAAAAhQAAAAsAAACHAAAAAQAAAAEAAAABAAAAZQAAAAEAAAABAAAAZQAAAGUAAABlAAAAZQAAAAEAAAABAAAAZQAAAGUAAABlAAAAdQAAAHcAAACFAAAAhgAAAIcAAABlAAAAZQAAAAEAAABlAAAAZQAAAHUAAAClAAAACwAAAIcAAAABAAAAZQAAAAEAAABlAAAAAQAAAAEAAABlAAAAAQAAAJUAAAC1AAAApgAAAHcAAAABAAAAZQAAAAEAAABlAAAAZQAAAAEAAABlAAAAZQAAAAEAAAABAAAAAQAAAGUAAAABAAAAAQAAAIUAAACmAAAApQAAALYAAACXAAAAAQAAAGUAAABlAAAAdQAAAHYAAAClAAAACwAAAIYAAACHAAAAAQAAAAEAAAABAAAAAQAAAGUAAAABAAAAZQAAAAEAAAABAAAAhQAAAAsAAACHAAAAZQAAAGUAAABlAAAAAQAAAGUAAABlAAAAZQAAAAEAAABlAAAAZQAAAAEAAAABAAAAZQAAAGUAAACFAAAACwAAALYAAACXAAAAZQAAAGUAAABlAAAAAQAAAIUAAACGAAAAhgAAAAsAAAALAAAApgAAAHYAAAB2AAAAdwAAAGUAAABlAAAAZQAAAAEAAABlAAAAdQAAAKUAAAC2AAAAlwAAAGUAAAABAAAAAQAAAGUAAAABAAAAZQAAAGUAAABlAAAAAQAAAAEAAABlAAAAZQAAAGUAAAABAAAAlQAAALUAAACHAAAAAQAAAAEAAABlAAAAAQAAAHUAAAClAAAACwAAALYAAAC1AAAAhgAAAIYAAAALAAAACwAAAIcAAABlAAAAAQAAAAEAAAABAAAAZQAAAIUAAACGAAAApgAAAHcAAABlAAAAAQAAAAEAAABlAAAAZQAAAAEAAAABAAAAZQAAAAEAAAABAAAAAQAAAAEAAAABAAAAZQAAAAEAAACFAAAAhwAAAGUAAAABAAAAZQAAAAEAAACFAAAAhgAAAAsAAACHAAAAlQAAAJYAAACWAAAAlgAAAJYAAACXAAAAZQAAAAEAAABlAAAABwAAAAkAAACVAAAAtQAAAIYAAACHAAAAAQAAAAEAAABlAAAAZQAAAAEAAABlAAAAAQAAAAEAAABlAAAAZQAAAAEAAABlAAAAZQAAAGUAAAB1AAAApQAAAKYAAAB2AAAAdwAAAGUAAABlAAAAlQAAALUAAAC2AAAAlwAAAGUAAABlAAAAZQAAAAEAAABlAAAAZQAAAGUAAAABAAAABwAAABYAAAAZAAAAAQAAAJUAAAC1AAAApgAAAHcAAABlAAAAZQAAAAEAAAABAAAAAQAAAAEAAAABAAAAZQAAAGUAAABlAAAAAQAAAAEAAABlAAAAhQAAAAsAAACGAAAAtgAAAJcAAAABAAAAAQAAAGUAAACVAAAAlwAAAAEAAAABAAAAZQAAAAEAAAABAAAAZQAAAGUAAAAHAAAACAAAABYAAAAYAAAAJgAAAAkAAABlAAAAhQAAAIYAAACmAAAAdwAAAGUAAABlAAAAAQAAAGUAAAABAAAAZQAAAAEAAAABAAAAZQAAAAEAAABlAAAAZQAAAIUAAAALAAAAhgAAAIcAAAABAAAAAQAAAGUAAABlAAAAAQAAAGUAAABlAAAAZQAAAAEAAABlAAAABwAAAAgAAAAJAAAAJwAAACgAAAAoAAAAGgAAABgAAAAZAAAAZQAAAJUAAAC1AAAAhgAAAIcAAAABAAAAZQAAAAEAAABlAAAAAQAAAAEAAAA=
+  </data>
+ </layer>
+ <layer name="objects" width="40" height="14">
+  <data encoding="base64">
+   AAAAAAAAAAAAAAAAAAAAAHEAAAByAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMQAAAAAAAAAAAAAAOAAAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJEAAACSAAAAEQAAAAAAAAAAAAAAAAAAAAAAAACRAAAAkgAAAB8AAAAAAAAAHwAAAIEAAAChAAAAogAAAAAAAAA3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACRAAAAsQAAALIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAIIAAAAAAAAAAAAAAAAAAACBAAAAggAAADUAAAAAAAAAAAAAAJEAAACSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAOQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJEAAACSAAAAAAAAAAAAAAAAAAAAkQAAAJIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANwAAAAAAAAA3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALwAAADAAAAAAAAAAAAAAALsAAAAAAAAAAAAAAAAAAAAAAAAALgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAuAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACBAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC7AAAAAAAAAAAAAAAAAAAAAAAAAD8AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALgAAAAAAAAAAAAAAAAAAAAAAAAAuAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAkQAAAJIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABhAAAAYgAAADEAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZwAAAGgAAABqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIEAAAAAAAAAcQAAAHIAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUgAAAAAAAAAAAAAAAAAAAIEAAACyAAAAAAAAAAAAAAAxAAAAAAAAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACBAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAACxAAAAsgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABpAAAAagAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkQAAAJIAAAAAAAAAAAAAAIEAAACCAAAAAAAAAAAAAAAAAAAAAAAAAIEAAACCAAAAAAAAAAAAAACBAAAAoQAAAKIAAAAAAAAAAAAAAAAAAAAAAAAAuwAAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADkAAAA3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACRAAAAkgAAAAAAAAAAAAAAAAAAAAAAAACRAAAAkgAAAAAAAAAAAAAAkQAAALEAAACyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4AAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIEAAAChAAAAogAAAAAAAABhAAAAYgAAADMAAAAAAAAAOAAAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4AAAAuAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACRAAAAsQAAALIAAAA=
+  </data>
+ </layer>
+</map>
