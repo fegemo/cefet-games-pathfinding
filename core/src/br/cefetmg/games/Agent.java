@@ -65,13 +65,19 @@ public class Agent {
         }
     }
 
+    /**
+     * Este método é chamado quando um clique no mapa é realizado.
+     * @param x coordenada x do ponteiro do mouse.
+     * @param y coordenada y do ponteiro do mouse.
+     */
     public void setGoal(int x, int y) {
         TileNode startNode = LevelManager.graph.getNodeAtCoordinates((int) this.position.coords.x, (int) this.position.coords.y);
         TileNode targetNode = LevelManager.graph.getNodeAtCoordinates(x, y);
 
         path.clear();
-        pathFinder.searchConnectionPath(startNode, targetNode, new EuclideanDistanceHeuristic(), path);
-//        pathFinder.searchConnectionPath(startNode, targetNode, new AlwaysZeroHeuristic(), path);
+        
+        // AQUI ESTAMOS CHAMANDO O ALGORITMO A*
+        pathFinder.searchConnectionPath(startNode, targetNode, ???, path);
         pathIterator = path.iterator();
     }
 
