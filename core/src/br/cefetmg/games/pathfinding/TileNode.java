@@ -1,7 +1,6 @@
 package br.cefetmg.games.pathfinding;
 
 import com.badlogic.gdx.ai.pfa.Connection;
-import com.badlogic.gdx.ai.pfa.indexed.IndexedNode;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
@@ -9,7 +8,7 @@ import com.badlogic.gdx.utils.Array;
  *
  * @author Flávio Coutinho <fegemo@gmail.com>
  */
-public class TileNode implements IndexedNode<TileNode> {
+public class TileNode {
 
     private final Array<Connection<TileNode>> connections = new Array<>();
     private final int index;
@@ -21,7 +20,6 @@ public class TileNode implements IndexedNode<TileNode> {
         position = Vector2.Zero;
     }
     
-    @Override
     public int getIndex() {
         return index;
     }
@@ -54,7 +52,6 @@ public class TileNode implements IndexedNode<TileNode> {
         this.position = position;
     }
 
-    @Override
     public Array<Connection<TileNode>> getConnections() {
         return connections;
     }
