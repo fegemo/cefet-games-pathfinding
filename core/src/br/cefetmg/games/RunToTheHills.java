@@ -9,6 +9,8 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -18,6 +20,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class RunToTheHills extends ApplicationAdapter {
 
+    private SpriteBatch batch;
+    private ShapeRenderer shapeRenderer;
     private TiledMap tiledMap;
 
     private Viewport viewport;
@@ -38,6 +42,8 @@ public class RunToTheHills extends ApplicationAdapter {
 
     @Override
     public void create() {
+        batch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 
@@ -48,8 +54,9 @@ public class RunToTheHills extends ApplicationAdapter {
 
         // Carrega o mapa
         tiledMap = LevelManager.LoadLevel("forest-hills.tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
-        graphRenderer = new GraphRenderer(camera);
+        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, batch);
+        graphRenderer = new GraphRenderer(batch, shapeRenderer);
+        graphRenderer.renderGraphToTexture(LevelManager.graph);
 
         agentRenderer = new AgentRenderer(camera);
         agent = new Agent(
@@ -60,11 +67,6 @@ public class RunToTheHills extends ApplicationAdapter {
         );
 
         Gdx.input.setInputProcessor(new InputAdapter() {
-            @Override
-            public boolean keyDown(int keycode) {
-                return false;
-            }
-
             @Override
             public boolean keyUp(int keycode) {
                 if (keycode == Input.Keys.LEFT) {
@@ -90,12 +92,6 @@ public class RunToTheHills extends ApplicationAdapter {
                 }
                 return false;
             }
-
-            @Override
-            public boolean keyTyped(char character) {
-                return false;
-            }
-
             @Override
             public boolean touchDown(int x, int y, int pointer, int button) {
                 Vector2 clique = new Vector2(x, y);
@@ -108,27 +104,6 @@ public class RunToTheHills extends ApplicationAdapter {
                 }
                 return true;
             }
-
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                return false;
-            }
-
-            @Override
-            public boolean touchDragged(int screenX, int screenY, int pointer) {
-                return false;
-            }
-
-            @Override
-            public boolean mouseMoved(int screenX, int screenY) {
-                return false;
-            }
-
-            @Override
-            public boolean scrolled(int amount) {
-                return false;
-            }
-
         });
     }
 
@@ -150,6 +125,7 @@ public class RunToTheHills extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
+        batch.setProjectionMatrix(camera.combined);
         agent.update(Gdx.graphics.getDeltaTime());
 
         tiledMapRenderer.setView(camera);
@@ -157,7 +133,10 @@ public class RunToTheHills extends ApplicationAdapter {
         agentRenderer.render(agent);
 
         if (debugMode) {
-            graphRenderer.renderGraph(LevelManager.graph);
+//            graphRenderer.renderGraph(LevelManager.graph);
+            batch.begin();
+            graphRenderer.renderOffScreenedGraph();
+            batch.end();
         }
         
         Gdx.graphics.setTitle(
