@@ -29,7 +29,12 @@ public class RunToTheHills extends ApplicationAdapter {
     private Agent agent;
     private AgentRenderer agentRenderer;
 
+    private final String windowTitle;
     private boolean debugMode = false;
+
+    public RunToTheHills() {
+        this.windowTitle = "Hunter x Hunter (%d)";
+    }
 
     @Override
     public void create() {
@@ -154,6 +159,9 @@ public class RunToTheHills extends ApplicationAdapter {
         if (debugMode) {
             graphRenderer.renderGraph(LevelManager.graph);
         }
+        
+        Gdx.graphics.setTitle(
+                String.format(windowTitle, Gdx.graphics.getFramesPerSecond()));
     }
 
 }
