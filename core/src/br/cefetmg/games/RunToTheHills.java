@@ -2,6 +2,7 @@ package br.cefetmg.games;
 
 import br.cefetmg.games.graphics.AgentRenderer;
 import br.cefetmg.games.graphics.GraphRenderer;
+import br.cefetmg.games.graphics.MetricsRenderer;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -35,9 +37,12 @@ public class RunToTheHills extends ApplicationAdapter {
 
     private final String windowTitle;
     private boolean debugMode = false;
+    private MetricsRenderer metricsRenderer;
+    private boolean showingMetrics;
 
     public RunToTheHills() {
         this.windowTitle = "Hunter x Hunter (%d)";
+        showingMetrics = true;
     }
 
     @Override
@@ -66,6 +71,9 @@ public class RunToTheHills extends ApplicationAdapter {
                 Color.FIREBRICK
         );
 
+        metricsRenderer = new MetricsRenderer(batch, shapeRenderer,
+                new BitmapFont());
+
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean keyUp(int keycode) {
@@ -82,16 +90,22 @@ public class RunToTheHills extends ApplicationAdapter {
                     camera.translate(0, 32);
                 }
                 if (keycode == Input.Keys.NUM_1) {
-                    tiledMap.getLayers().get(0).setVisible(!tiledMap.getLayers().get(0).isVisible());
+                    tiledMap.getLayers().get(0).setVisible(
+                            !tiledMap.getLayers().get(0).isVisible());
                 }
                 if (keycode == Input.Keys.NUM_2) {
-                    tiledMap.getLayers().get(1).setVisible(!tiledMap.getLayers().get(1).isVisible());
+                    tiledMap.getLayers().get(1).setVisible(
+                            !tiledMap.getLayers().get(1).isVisible());
+                }
+                if (keycode == Input.Keys.M) {
+                    showingMetrics = !showingMetrics;
                 }
                 if (keycode == Input.Keys.D) {
                     debugMode = !debugMode;
                 }
                 return false;
             }
+
             @Override
             public boolean touchDown(int x, int y, int pointer, int button) {
                 Vector2 clique = new Vector2(x, y);
@@ -99,7 +113,6 @@ public class RunToTheHills extends ApplicationAdapter {
 
                 // Botão ESQUERDO: posiciona objetivo
                 if (button == Input.Buttons.LEFT) {
-//                    target.coords = clique;
                     agent.setGoal((int) clique.x, (int) clique.y);
                 }
                 return true;
@@ -122,7 +135,7 @@ public class RunToTheHills extends ApplicationAdapter {
     public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
         camera.update();
         batch.setProjectionMatrix(camera.combined);
@@ -131,14 +144,17 @@ public class RunToTheHills extends ApplicationAdapter {
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
         agentRenderer.render(agent);
+        if (showingMetrics) {
+            metricsRenderer.render(agent.getPathFindingMetrics(),
+                    LevelManager.graph.getNodeCount());
+        }
 
         if (debugMode) {
-//            graphRenderer.renderGraph(LevelManager.graph);
             batch.begin();
             graphRenderer.renderOffScreenedGraph();
             batch.end();
         }
-        
+
         Gdx.graphics.setTitle(
                 String.format(windowTitle, Gdx.graphics.getFramesPerSecond()));
     }

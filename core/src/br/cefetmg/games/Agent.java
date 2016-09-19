@@ -9,6 +9,7 @@ import br.cefetmg.games.pathfinding.TileConnection;
 import br.cefetmg.games.pathfinding.TileNode;
 import com.badlogic.gdx.ai.pfa.DefaultGraphPath;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder;
+import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder.Metrics;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Iterator;
@@ -36,7 +37,7 @@ public class Agent {
         this.steeringTarget = new Target(position);
         this.behavior = new Seek(fullSpeed);
         this.behavior.target = steeringTarget;
-        this.pathFinder = new IndexedAStarPathFinder(LevelManager.graph, false);
+        this.pathFinder = new IndexedAStarPathFinder(LevelManager.graph, true);
         this.path = new DefaultGraphPath<>();
         this.pathIterator = this.path.iterator();
     }
@@ -70,6 +71,7 @@ public class Agent {
         TileNode targetNode = LevelManager.graph.getNodeAtCoordinates(x, y);
 
         path.clear();
+        pathFinder.metrics.reset();
         pathFinder.searchConnectionPath(startNode, targetNode, new EuclideanDistanceHeuristic(), path);
 //        pathFinder.searchConnectionPath(startNode, targetNode, new AlwaysZeroHeuristic(), path);
         pathIterator = path.iterator();
@@ -83,7 +85,7 @@ public class Agent {
         return behavior;
     }
 
-    public char getBehaviorName() {
-        return behavior != null ? behavior.name : '-';
+    public Metrics getPathFindingMetrics() {
+        return pathFinder.metrics;
     }
 }
