@@ -1,7 +1,7 @@
 package br.cefetmg.games;
 
-import br.cefetmg.games.graphics.AgentRenderer;
 import br.cefetmg.games.graphics.GraphRenderer;
+import br.cefetmg.games.graphics.AgentRenderer;
 import br.cefetmg.games.graphics.MetricsRenderer;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -10,6 +10,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -63,7 +64,7 @@ public class RunToTheHills extends ApplicationAdapter {
         graphRenderer = new GraphRenderer(batch, shapeRenderer);
         graphRenderer.renderGraphToTexture(LevelManager.graph);
 
-        agentRenderer = new AgentRenderer(camera);
+        agentRenderer = new AgentRenderer(batch, camera, new Texture("gon.png"));
         agent = new Agent(
                 new Vector2(
                         LevelManager.tileWidth / 2,

@@ -1,31 +1,44 @@
 package br.cefetmg.games.graphics;
 
 import br.cefetmg.games.Agent;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
- *
- * @author Flávio Coutinho <fegemo@gmail.com>
+ * Um renderizador de agentes que usa uma sprite animada com 8 direções.
+ * 
+ * @author fegemo <coutinho@decom.cefetmg.br>
  */
 public class AgentRenderer {
 
-    private final ShapeRenderer shapeRenderer;
+    private final SpriteBatch batch;
     private final Camera camera;
-    
-    public AgentRenderer(Camera camera) {
-        shapeRenderer = new ShapeRenderer();
+    private final OrientedCharacterSprite sprite;
+
+    /**
+     * Cria um novo renderizador com uma textura 8x3 (8 direções, 3 quadros de
+     * animação de "andando" em cada uma).
+     * @param batch
+     * @param camera
+     * @param character 
+     */
+    public AgentRenderer(SpriteBatch batch, Camera camera, 
+            Texture character) {
+        this.batch = batch;
         this.camera = camera;
+        this.sprite = new OrientedCharacterSprite(character, 40, 40);
     }
     
     public void render(Agent agent) {
-        shapeRenderer.setProjectionMatrix(camera.combined);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(agent.color);
-        shapeRenderer.translate(agent.position.coords.x, agent.position.coords.y, 0);
-        shapeRenderer.circle(0, 0, 10);
-        shapeRenderer.identity();
-        shapeRenderer.end();
+        sprite.update(Gdx.graphics.getDeltaTime());
+        sprite.setCenter(agent.position.coords.x, (int)agent.position.coords.y);
+        sprite.setFacing(agent.getFacing());
+        sprite.setMoving(agent.isMoving());
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        sprite.draw(batch);
+        batch.end();
     }
-
 }

@@ -1,5 +1,6 @@
 package br.cefetmg.games;
 
+import br.cefetmg.games.graphics.Facing;
 import br.cefetmg.games.movement.Position;
 import br.cefetmg.games.movement.Steering;
 import br.cefetmg.games.movement.Target;
@@ -28,8 +29,10 @@ public class Agent {
     private final Target steeringTarget;
     private final float fullSpeed = 75;
     private static final float MIN_DISTANCE_CONSIDERED_ZERO_SQUARED = (float) Math.pow(2.0f, 2);
+    private Facing facing;
 
     public Color color;
+    private boolean shouldMove;
 
     public Agent(Vector2 position, Color color) {
         this.position = new Position(position);
@@ -40,10 +43,12 @@ public class Agent {
         this.pathFinder = new IndexedAStarPathFinder(LevelManager.graph, true);
         this.path = new DefaultGraphPath<>();
         this.pathIterator = this.path.iterator();
+        this.facing = Facing.EAST;
+        this.shouldMove = false;
     }
 
     public void update(float delta) {
-        boolean shouldMove = true;
+        shouldMove = true;
 
         // verifica se atingimos nosso objetivo imediato
         if (position.coords.dst2(steeringTarget.coords) < MIN_DISTANCE_CONSIDERED_ZERO_SQUARED) {
@@ -63,6 +68,11 @@ public class Agent {
         if (shouldMove) {
             Steering steering = behavior.steer(this.position);
             position.integrate(steering, delta);
+
+            // verifica o vetor velocidade para determinar a orientação
+            float angle = steering.velocity.angle();
+            int quadrant = (int) (((int) angle + (360 - 67.5f)) / 45) % 8;
+            facing = Facing.values()[(8 - quadrant) % 8];
         }
     }
 
@@ -72,17 +82,17 @@ public class Agent {
 
         path.clear();
         pathFinder.metrics.reset();
-        pathFinder.searchConnectionPath(startNode, targetNode, new EuclideanDistanceHeuristic(), path);
-//        pathFinder.searchConnectionPath(startNode, targetNode, new AlwaysZeroHeuristic(), path);
+//        pathFinder.searchConnectionPath(startNode, targetNode, new EuclideanDistanceHeuristic(), path);
+        pathFinder.searchConnectionPath(startNode, targetNode, new AlwaysZeroHeuristic(), path);
         pathIterator = path.iterator();
     }
 
-    public void setBehavior(Algorithm behavior) {
-        this.behavior = behavior;
+    public Facing getFacing() {
+        return facing;
     }
 
-    public Algorithm getBehavior() {
-        return behavior;
+    public boolean isMoving() {
+        return shouldMove;
     }
 
     public Metrics getPathFindingMetrics() {
