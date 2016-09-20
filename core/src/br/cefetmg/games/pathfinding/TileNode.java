@@ -1,5 +1,6 @@
 package br.cefetmg.games.pathfinding;
 
+import br.cefetmg.games.LevelManager;
 import com.badlogic.gdx.ai.pfa.Connection;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -40,12 +41,29 @@ public class TileNode {
     }
 
     /**
+     * Retorna a posição (x,y) no mundo (na janela, em pixels).
+     * 
      * @return the position
      */
     public Vector2 getPosition() {
         return position;
     }
-
+    
+    /**
+     * Retorna a coordenada (x,y) no grid de tiles.
+     * (x,y) são os índices (começando de 0) com a ordem dos tiles - são
+     * sempre números inteiros não-negativos, começando no canto esquerdo
+     * inferior.
+     * 
+     * @return 
+     */
+    public Vector2 getTilePosition() {
+        return new Vector2(
+                ((int)position.x)/LevelManager.tileWidth,
+                ((int)position.y)/LevelManager.tileHeight
+        );
+    }
+    
     /**
      * @param position the position to set
      */

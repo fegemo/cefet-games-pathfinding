@@ -1,6 +1,5 @@
 package br.cefetmg.games;
 
-import br.cefetmg.games.pathfinding.heuristics.AlwaysZeroHeuristic;
 import br.cefetmg.games.graphics.Facing;
 import br.cefetmg.games.movement.Position;
 import br.cefetmg.games.movement.Steering;
@@ -9,6 +8,8 @@ import br.cefetmg.games.movement.behavior.Algorithm;
 import br.cefetmg.games.movement.behavior.Seek;
 import br.cefetmg.games.pathfinding.TileConnection;
 import br.cefetmg.games.pathfinding.TileNode;
+import br.cefetmg.games.pathfinding.heuristics.EuclideanDistanceHeuristic;
+import br.cefetmg.games.pathfinding.heuristics.OctileDistanceHeuristic;
 import com.badlogic.gdx.ai.pfa.DefaultGraphPath;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder.Metrics;
@@ -103,9 +104,9 @@ public class Agent {
         path.clear();
         pathFinder.metrics.reset();
         // escolha qual a heurística deve ser usada
-//        pathFinder.searchConnectionPath(startNode, targetNode, new EuclideanDistanceHeuristic(), path);
-//        pathFinder.searchConnectionPath(startNode, targetNode, new ManhattanDistanceHeuristic(), path);
-        pathFinder.searchConnectionPath(startNode, targetNode, new AlwaysZeroHeuristic(), path);
+        pathFinder.searchConnectionPath(startNode, targetNode, new EuclideanDistanceHeuristic(), path);
+//        pathFinder.searchConnectionPath(startNode, targetNode, new OctileDistanceHeuristic(), path);
+//        pathFinder.searchConnectionPath(startNode, targetNode, new AlwaysZeroHeuristic(), path);
         pathIterator = path.iterator();
     }
 
