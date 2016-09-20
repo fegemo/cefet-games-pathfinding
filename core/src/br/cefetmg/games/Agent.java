@@ -1,6 +1,5 @@
 package br.cefetmg.games;
 
-import br.cefetmg.games.pathfinding.heuristics.AlwaysZeroHeuristic;
 import br.cefetmg.games.graphics.Facing;
 import br.cefetmg.games.movement.Position;
 import br.cefetmg.games.movement.Steering;
@@ -10,6 +9,7 @@ import br.cefetmg.games.movement.behavior.Seek;
 import br.cefetmg.games.pathfinding.TileConnection;
 import br.cefetmg.games.pathfinding.TileNode;
 import com.badlogic.gdx.ai.pfa.DefaultGraphPath;
+import com.badlogic.gdx.ai.pfa.Heuristic;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder.Metrics;
 import com.badlogic.gdx.graphics.Color;
@@ -102,10 +102,18 @@ public class Agent {
 
         path.clear();
         pathFinder.metrics.reset();
-        // escolha qual a heurística deve ser usada
-//        pathFinder.searchConnectionPath(startNode, targetNode, new EuclideanDistanceHeuristic(), path);
-//        pathFinder.searchConnectionPath(startNode, targetNode, new ManhattanDistanceHeuristic(), path);
-        pathFinder.searchConnectionPath(startNode, targetNode, new AlwaysZeroHeuristic(), path);
+        // AQUI ESTAMOS CHAMANDO O ALGORITMO A* (instância pathFinder) 
+        pathFinder.searchConnectionPath(startNode, targetNode, 
+                new Heuristic<TileNode>() { 
+ 
+            @Override 
+            public float estimate(TileNode n, TileNode n1) { 
+                throw new UnsupportedOperationException("Deveria ter retornado "
+                        + "um valor para a heurística no arquivo "
+                        + "Agent.java:107, mas o professor resolveu explodir "
+                        + "o programa e deixar você consertar ;)"); 
+            } 
+        }, path); 
         pathIterator = path.iterator();
     }
 
