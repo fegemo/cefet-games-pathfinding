@@ -26,6 +26,8 @@ public class HunterHunterGame extends ApplicationAdapter {
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private TiledMap tiledMap;
+    private static final int[] MAP_LAYERS_BELOW_CHARACTER = new int[] { 0, 1 };
+    private static final int[] MAP_LAYERS_ABOVE_CHARACTER = new int[] { 2 };
 
     private Viewport viewport;
     private OrthographicCamera camera;
@@ -78,18 +80,6 @@ public class HunterHunterGame extends ApplicationAdapter {
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean keyUp(int keycode) {
-                if (keycode == Input.Keys.LEFT) {
-                    camera.translate(-32, 0);
-                }
-                if (keycode == Input.Keys.RIGHT) {
-                    camera.translate(32, 0);
-                }
-                if (keycode == Input.Keys.UP) {
-                    camera.translate(0, -32);
-                }
-                if (keycode == Input.Keys.DOWN) {
-                    camera.translate(0, 32);
-                }
                 if (keycode == Input.Keys.NUM_1) {
                     tiledMap.getLayers().get(0).setVisible(
                             !tiledMap.getLayers().get(0).isVisible());
@@ -97,6 +87,10 @@ public class HunterHunterGame extends ApplicationAdapter {
                 if (keycode == Input.Keys.NUM_2) {
                     tiledMap.getLayers().get(1).setVisible(
                             !tiledMap.getLayers().get(1).isVisible());
+                }
+                if (keycode == Input.Keys.NUM_3) {
+                    tiledMap.getLayers().get(2).setVisible(
+                            !tiledMap.getLayers().get(2).isVisible());
                 }
                 if (keycode == Input.Keys.M) {
                     showingMetrics = !showingMetrics;
@@ -143,8 +137,9 @@ public class HunterHunterGame extends ApplicationAdapter {
         agent.update(Gdx.graphics.getDeltaTime());
 
         tiledMapRenderer.setView(camera);
-        tiledMapRenderer.render();
+        tiledMapRenderer.render(MAP_LAYERS_BELOW_CHARACTER);
         agentRenderer.render(agent);
+        tiledMapRenderer.render(MAP_LAYERS_ABOVE_CHARACTER);
         if (showingMetrics) {
             metricsRenderer.render(agent.getPathFindingMetrics(),
                     LevelManager.graph.getNodeCount());
