@@ -13,6 +13,7 @@ public class TileNode {
     private final Array<Connection<TileNode>> connections = new Array<>();
     private final int index;
     private boolean isObstacle;
+    private boolean isWater;
     private Vector2 position;
     
     public TileNode() {
@@ -54,6 +55,14 @@ public class TileNode {
 
     public Array<Connection<TileNode>> getConnections() {
         return connections;
+    }
+
+    public boolean isWater() {
+        return isWater;
+    }
+    
+    public void setIsWater(boolean water) {
+        isWater = water;
     }
     
     private static class Incrementer {

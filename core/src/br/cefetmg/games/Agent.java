@@ -56,12 +56,14 @@ public class Agent {
             // e, caso afirmativo, definir o nó de chegada como novo target
             if (shouldMove = pathIterator.hasNext()) {
                 TileConnection nextConnection = pathIterator.next();
-                TileNode nextNode = nextConnection.getToNode();
+                nextNode = nextConnection.getToNode();
                 steeringTarget.coords = nextNode.getPosition();
 
                 // atualiza a velocidade do "seek" de acordo com o terreno (a conexão)
                 this.behavior.maxSpeed = fullSpeed - (fullSpeed / 2.0f) * (nextConnection.getCost() - 1) / (LevelManager.maxCost - 1);
             }
+        } else if (position.coords.dst2(steeringTarget.coords) < MIN_DISTANCE_CONSIDERED_ZERO_SQUARED * 6) {
+            currentNode = nextNode;
         }
 
         // integra
@@ -97,5 +99,9 @@ public class Agent {
 
     public Metrics getPathFindingMetrics() {
         return pathFinder.metrics;
+    }
+
+    public boolean isUnderWater() {
+        return currentNode == null ? false : currentNode.isWater();
     }
 }

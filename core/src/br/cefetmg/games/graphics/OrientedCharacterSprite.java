@@ -56,6 +56,7 @@ public class OrientedCharacterSprite extends Sprite {
                     .setPlayMode(Animation.PlayMode.LOOP);
         }
         currentAnimation = animations.get(Facing.SOUTH);
+        super.setTexture(currentAnimation.getKeyFrame(0).getTexture());
         animationTime = 0;
         moving = false;
     }

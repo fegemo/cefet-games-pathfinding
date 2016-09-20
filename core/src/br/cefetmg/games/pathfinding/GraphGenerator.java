@@ -24,6 +24,7 @@ public class GraphGenerator {
             for (int j = 0; j < LevelManager.horizontalTiles; j++) {
                 TileNode newNode = new TileNode();
                 newNode.setIsObstacle(isObstacle(map, j, i));
+                newNode.setIsWater(isWater(map, j, i));
                 newNode.setPosition(
                         new Vector2(
                                 j * LevelManager.tileWidth + LevelManager.tileWidth / 2,
@@ -99,6 +100,15 @@ public class GraphGenerator {
             isObstacle |= Boolean.parseBoolean(props.get("obstacle", "false", String.class));
         }
         return isObstacle;
+    }
+
+    private static boolean isWater(TiledMap map, int j, int i) {
+        boolean isWater = false;
+        for (Cell c : getCellsAt(map, j, i)) {
+            MapProperties props = c.getTile().getProperties();
+            isWater |= Boolean.parseBoolean(props.get("water", "false", String.class));
+        }
+        return isWater;
     }
 
     private static float getCost(TiledMap map, int j, int i) {
