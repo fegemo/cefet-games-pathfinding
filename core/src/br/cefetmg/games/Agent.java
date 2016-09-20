@@ -23,7 +23,7 @@ import java.util.Iterator;
 public class Agent {
 
     public Position position;
-    private Algorithm behavior;
+    private final Algorithm seek;
     private final IndexedAStarPathFinder pathFinder;
     private final DefaultGraphPath<TileConnection> path;
     private Iterator<TileConnection> pathIterator;
@@ -40,8 +40,8 @@ public class Agent {
         this.position = new Position(position);
         this.color = color;
         this.steeringTarget = new Target(position);
-        this.behavior = new Seek(fullSpeed);
-        this.behavior.target = steeringTarget;
+        this.seek = new Seek(fullSpeed);
+        this.seek.target = steeringTarget;
         this.pathFinder = new IndexedAStarPathFinder(LevelManager.graph, true);
         this.path = new DefaultGraphPath<>();
         this.pathIterator = this.path.iterator();
@@ -49,6 +49,12 @@ public class Agent {
         this.shouldMove = false;
     }
 
+    /**
+     * Atualiza a posição do agente de acordo com seu objetivo de alto nível
+     * (pathfinding).
+     *
+     * @param delta tempo desde a última atualização.
+     */
     public void update(float delta) {
         shouldMove = true;
 
@@ -62,7 +68,7 @@ public class Agent {
                 steeringTarget.coords = nextNode.getPosition();
 
                 // atualiza a velocidade do "seek" de acordo com o terreno (a conexão)
-                this.behavior.maxSpeed = fullSpeed - (fullSpeed / 2.0f) * (nextConnection.getCost() - 1) / (LevelManager.maxCost - 1);
+                this.seek.maxSpeed = fullSpeed - (fullSpeed / 2.0f) * (nextConnection.getCost() - 1) / (LevelManager.maxCost - 1);
             }
         } else if (position.coords.dst2(steeringTarget.coords) < MIN_DISTANCE_CONSIDERED_ZERO_SQUARED * 6) {
             currentNode = nextNode;
@@ -70,7 +76,7 @@ public class Agent {
 
         // integra
         if (shouldMove) {
-            Steering steering = behavior.steer(this.position);
+            Steering steering = seek.steer(this.position);
             position.integrate(steering, delta);
 
             // verifica o vetor velocidade para determinar a orientação
@@ -80,30 +86,59 @@ public class Agent {
         }
     }
 
+    /**
+     * Este método é chamado quando um clique no mapa é realizado.
+     *
+     * @param x coordenada x do ponteiro do mouse.
+     * @param y coordenada y do ponteiro do mouse.
+     */
     public void setGoal(int x, int y) {
-        TileNode startNode = LevelManager.graph.getNodeAtCoordinates((int) this.position.coords.x, (int) this.position.coords.y);
-        TileNode targetNode = LevelManager.graph.getNodeAtCoordinates(x, y);
+        TileNode startNode = LevelManager.graph
+                .getNodeAtCoordinates(
+                        (int) this.position.coords.x,
+                        (int) this.position.coords.y);
+        TileNode targetNode = LevelManager.graph
+                .getNodeAtCoordinates(x, y);
 
         path.clear();
         pathFinder.metrics.reset();
+        // escolha qual a heurística deve ser usada
 //        pathFinder.searchConnectionPath(startNode, targetNode, new EuclideanDistanceHeuristic(), path);
+//        pathFinder.searchConnectionPath(startNode, targetNode, new ManhattanDistanceHeuristic(), path);
         pathFinder.searchConnectionPath(startNode, targetNode, new AlwaysZeroHeuristic(), path);
         pathIterator = path.iterator();
     }
 
+    /**
+     * Retorna em que direção (das 8) o agente está olhando.
+     * @return a direção de orientação.
+     */
     public Facing getFacing() {
         return facing;
     }
 
+    /**
+     * Retorna se o agente está se movimentando ou se está parado.
+     * @return 
+     */
     public boolean isMoving() {
         return shouldMove;
     }
 
-    public Metrics getPathFindingMetrics() {
-        return pathFinder.metrics;
-    }
-
+    /**
+     * Retorna se o agente está em um tile de água.
+     * @return 
+     */
     public boolean isUnderWater() {
         return currentNode == null ? false : currentNode.isWater();
+    }
+
+    /**
+     * Retorna as métricas da última execução do algoritmo de planejamento de
+     * trajetórias.
+     * @return as métricas.
+     */
+    public Metrics getPathFindingMetrics() {
+        return pathFinder.metrics;
     }
 }
