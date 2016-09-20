@@ -1,5 +1,6 @@
 package br.cefetmg.games;
 
+import br.cefetmg.games.pathfinding.heuristics.AlwaysZeroHeuristic;
 import br.cefetmg.games.graphics.Facing;
 import br.cefetmg.games.movement.Position;
 import br.cefetmg.games.movement.Steering;
@@ -30,6 +31,7 @@ public class Agent {
     private final float fullSpeed = 75;
     private static final float MIN_DISTANCE_CONSIDERED_ZERO_SQUARED = (float) Math.pow(2.0f, 2);
     private Facing facing;
+    private TileNode nextNode, currentNode;
 
     public Color color;
     private boolean shouldMove;
