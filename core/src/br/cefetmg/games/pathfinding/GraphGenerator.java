@@ -18,7 +18,6 @@ public class GraphGenerator {
     public static TileGraph generateGraph(TiledMap map) {
         Array<TileNode> nodes = new Array<>();
         TiledMapTileLayer floor = (TiledMapTileLayer) map.getLayers().get(0);
-//        TiledMapTileLayer objects = (TiledMapTileLayer) map.getLayers().get(1);
 
         for (int i = 0; i < LevelManager.verticalTiles; i++) {
             for (int j = 0; j < LevelManager.horizontalTiles; j++) {
@@ -66,10 +65,16 @@ public class GraphGenerator {
         TileNode other = nodes.get(otherIndex);
 
         if (other != null && !other.isObstacle()) {
-            //Cell otherCell = tiles.getCell(j + jOffset, i + iOffset);
+
             if (!other.isObstacle()) {
-                //n.createConnection(other, getCost(otherCell.getTile()));
-                n.createConnection(other, getCost(map, j + jOffset, i + iOffset));
+
+                float nodeCost = getCost(map, j + jOffset, i + iOffset);
+                // se for uma aresta diagonal, multiplica o custo por raiz de 2
+                // porque é uma hipotenusa
+                if (Math.abs(jOffset) > 0 && Math.abs(iOffset) > 0) {
+                    nodeCost *= Math.sqrt(2);
+                }
+                n.createConnection(other, nodeCost);
             }
         }
         return 1;
