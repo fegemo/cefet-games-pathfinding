@@ -21,7 +21,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class RunToTheHills extends ApplicationAdapter {
+public class HunterHunterGame extends ApplicationAdapter {
 
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
@@ -41,7 +41,7 @@ public class RunToTheHills extends ApplicationAdapter {
     private MetricsRenderer metricsRenderer;
     private boolean showingMetrics;
 
-    public RunToTheHills() {
+    public HunterHunterGame() {
         this.windowTitle = "Hunter x Hunter (%d)";
         showingMetrics = true;
     }
@@ -59,7 +59,7 @@ public class RunToTheHills extends ApplicationAdapter {
         viewport = new ScreenViewport(camera);
 
         // Carrega o mapa
-        tiledMap = LevelManager.LoadLevel("forest-hills.tmx");
+        tiledMap = LevelManager.LoadLevel("greed-island.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, batch);
         graphRenderer = new GraphRenderer(batch, shapeRenderer);
         graphRenderer.renderGraphToTexture(LevelManager.graph);
