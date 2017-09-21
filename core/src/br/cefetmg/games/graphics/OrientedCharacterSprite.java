@@ -8,15 +8,15 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.HashMap;
 
 /**
- * Uma sprite que pode estar orientada em 8 direções e possui 3 quadros de 
+ * Uma sprite que pode estar orientada em 8 direções e possui 3 quadros de
  * animação de "andando" em cada uma delas.
- * 
+ *
  * É criada a partir de uma sprite sheet contendo 8x3 quadros, em que cada
  * coluna tem 3 quadros de animação do personagem andando em uma direção.
- * 
+ *
  * As direções são NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST,
  * NORTHWEST, nessa ordem (@see Facing).
- * 
+ *
  * @see Facing
  * @author fegemo <coutinho@decom.cefetmg.br>
  */
@@ -29,9 +29,9 @@ public class OrientedCharacterSprite extends Sprite {
     private boolean moving;
 
     /**
-     * Constrói uma sprite com a sprite sheet texture, em que cada quadro
-     * tem dimensões frameWidth e frameHeight.
-     * 
+     * Constrói uma sprite com a sprite sheet texture, em que cada quadro tem
+     * dimensões frameWidth e frameHeight.
+     *
      * @param texture sprite sheet.
      * @param frameWidth largura de cada quadro.
      * @param frameHeight algura de cada quadro.
@@ -56,13 +56,14 @@ public class OrientedCharacterSprite extends Sprite {
                     .setPlayMode(Animation.PlayMode.LOOP);
         }
         currentAnimation = animations.get(Facing.SOUTH);
-        super.setTexture(currentAnimation.getKeyFrame(0).getTexture());
+        super.setTexture(((TextureRegion) currentAnimation.getKeyFrame(0)).getTexture());
         animationTime = 0;
         moving = false;
     }
 
     /**
      * Atualiza a animação da sprite.
+     *
      * @param dt tempo desde o último quadro.
      */
     public void update(float dt) {
@@ -74,18 +75,20 @@ public class OrientedCharacterSprite extends Sprite {
 
     /**
      * Desenha esta sprite usando o quadro atual da animação corrente.
-     * @param batch 
+     *
+     * @param batch
      */
     @Override
     public void draw(Batch batch) {
         TextureRegion currentFrame = moving
-                ? currentAnimation.getKeyFrame(animationTime)
-                : currentAnimation.getKeyFrames()[0];
+                ? (TextureRegion) currentAnimation.getKeyFrame(animationTime)
+                : (TextureRegion) currentAnimation.getKeyFrames()[0];
         batch.draw(currentFrame, super.getX(), super.getY());
     }
 
     /**
      * Define qual a orientação da sprite.
+     *
      * @param orientation nova orientação.
      * @see Facing
      */
@@ -98,8 +101,9 @@ public class OrientedCharacterSprite extends Sprite {
     }
 
     /**
-     * Define se a sprite está com animação de se movendo ou se ela está 
-     * parada (sem animar).
+     * Define se a sprite está com animação de se movendo ou se ela está parada
+     * (sem animar).
+     *
      * @param moving se está se movimentando e animando.
      */
     public void setMoving(boolean moving) {
