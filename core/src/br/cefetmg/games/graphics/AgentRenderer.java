@@ -18,6 +18,19 @@ public class AgentRenderer {
     private final SpriteBatch batch;
     private final Camera camera;
     private final OrientedCharacterSprite sprite;
+    
+    // tamanho dos quadros da animação (40x40)
+    private static final int FRAME_WIDTH = 40;
+    private static final int FRAME_HEIGHT = FRAME_WIDTH;
+    
+    // um deslocamento em Y para que o personagem fique alinhado à altura 
+    // da ponte
+    private static final int POSITION_OFFSET_Y = FRAME_HEIGHT / 2;        // 20
+    
+    // quanto para baixo ele é desenhado quando na água
+    private static final int POSITION_WATER_OFFSET_Y = FRAME_HEIGHT / 8;  // 5
+    // quanto do corpo aparece molhado quanto está na água
+    private static final int UNDERWATER_HEIGHT_PORTION = FRAME_HEIGHT / 4;// 10
 
     /**
      * Cria um novo renderizador com uma textura 8x3 (8 direções, 3 quadros de
@@ -31,28 +44,45 @@ public class AgentRenderer {
             Texture character) {
         this.batch = batch;
         this.camera = camera;
-        this.sprite = new OrientedCharacterSprite(character, 40, 40);
+        this.sprite = new OrientedCharacterSprite(character,
+                FRAME_WIDTH, FRAME_HEIGHT);
     }
 
     public void render(Agent agent) {
         sprite.update(Gdx.graphics.getDeltaTime());
-        sprite.setCenter(agent.position.coords.x, (int) agent.position.coords.y);
+        sprite.setCenter(
+                agent.position.coords.x,
+                agent.position.coords.y);
         sprite.setFacing(agent.getFacing());
         sprite.setMoving(agent.isMoving());
+        sprite.translateY(POSITION_OFFSET_Y);
         batch.setProjectionMatrix(camera.combined);
 
+        // se o agente está debaixo d'água, para dar o efeito visual:
+        //   1. desenhamos ele deslocado (translateY) um pouco para baixo
+        //   2. desenhamos a metade de cima dele, normal
+        //   3. desenhamos a metade de baixo com a cor azulada
         if (agent.isUnderWater()) {
-            sprite.translateY(-5);
+            // desloca para baixo
+            sprite.translateY(-POSITION_WATER_OFFSET_Y);
+
+            // vamos desenhar apenas a metade de cima do agente
             Gdx.gl20.glEnable(GL20.GL_SCISSOR_TEST);
             Gdx.gl20.glScissor(
-                    (int) agent.position.coords.x - 20,
-                    (int) agent.position.coords.y - 10, 40, 30);
+                    (int) sprite.getX(),
+                    (int) sprite.getY() + UNDERWATER_HEIGHT_PORTION,
+                    FRAME_WIDTH,                                // 40
+                    FRAME_HEIGHT - UNDERWATER_HEIGHT_PORTION);  // 30
             batch.begin();
             sprite.draw(batch);
             batch.end();
+
+            // agora, vamos desenhar só a parte de baixo, com a cor azulada
             Gdx.gl20.glScissor(
-                    (int) agent.position.coords.x - 20,
-                    (int) agent.position.coords.y - 20, 40, 10);
+                    (int) sprite.getX(),
+                    (int) sprite.getY(),
+                    FRAME_WIDTH,
+                    UNDERWATER_HEIGHT_PORTION);
             Gdx.gl.glEnable(GL20.GL_BLEND);
             batch.setColor(0, 0, 1, 0.5f);
             batch.begin();
@@ -62,6 +92,7 @@ public class AgentRenderer {
             Gdx.gl.glDisable(GL20.GL_BLEND);
             Gdx.gl20.glDisable(GL20.GL_SCISSOR_TEST);
         } else {
+            // desenha o agente normalmente, já que ele não está debaixo d'água
             batch.begin();
             sprite.draw(batch);
             batch.end();
