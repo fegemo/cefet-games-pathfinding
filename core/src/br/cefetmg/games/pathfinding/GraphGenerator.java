@@ -55,7 +55,8 @@ public class GraphGenerator {
         return new TileGraph(nodes);
     }
 
-    private static int connectWith(int j, int i, Array<TileNode> nodes, TiledMap map, int jOffset, int iOffset) {
+    private static int connectWith(int j, int i, Array<TileNode> nodes, 
+            TiledMap map, int jOffset, int iOffset) {
         if (!isBetween(j + jOffset, 0, LevelManager.horizontalTiles - 1)
                 || !isBetween(i + iOffset, 0, LevelManager.verticalTiles - 1)) {
             return 0;
@@ -68,8 +69,17 @@ public class GraphGenerator {
         if (other != null && !other.isObstacle()) {
             //Cell otherCell = tiles.getCell(j + jOffset, i + iOffset);
             if (!other.isObstacle()) {
+                boolean isDiagonalConnection = jOffset != 0 && iOffset != 0;
                 //n.createConnection(other, getCost(otherCell.getTile()));
-                n.createConnection(other, getCost(map, j + jOffset, i + iOffset));
+                
+                float connectionCost = getCost(map, j + jOffset, i + iOffset);
+                
+                // arestas na diagonal devem ter o custo * raizDeDois (diagonal
+                //   do quadrado unitário)
+                if (isDiagonalConnection) {
+                    connectionCost *= Math.sqrt(2);
+                }
+                n.createConnection(other, connectionCost);
             }
         }
         return 1;
