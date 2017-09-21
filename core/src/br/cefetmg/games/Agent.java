@@ -103,22 +103,23 @@ public class Agent {
         path.clear();
         pathFinder.metrics.reset();
         // AQUI ESTAMOS CHAMANDO O ALGORITMO A* (instância pathFinder) 
-        pathFinder.searchConnectionPath(startNode, targetNode, 
-                new Heuristic<TileNode>() { 
- 
-            @Override 
-            public float estimate(TileNode n, TileNode n1) { 
+        pathFinder.searchConnectionPath(startNode, targetNode,
+                new Heuristic<TileNode>() {
+
+            @Override
+            public float estimate(TileNode n, TileNode n1) {
                 throw new UnsupportedOperationException("Deveria ter retornado "
                         + "um valor para a heurística no arquivo "
                         + "Agent.java:107, mas o professor resolveu explodir "
                         + "o programa e deixar você consertar ;)"); 
-            } 
-        }, path); 
+            }
+        }, path);
         pathIterator = path.iterator();
     }
 
     /**
      * Retorna em que direção (das 8) o agente está olhando.
+     *
      * @return a direção de orientação.
      */
     public Facing getFacing() {
@@ -127,7 +128,8 @@ public class Agent {
 
     /**
      * Retorna se o agente está se movimentando ou se está parado.
-     * @return 
+     *
+     * @return
      */
     public boolean isMoving() {
         return shouldMove;
@@ -135,15 +137,42 @@ public class Agent {
 
     /**
      * Retorna se o agente está em um tile de água.
-     * @return 
+     *
+     * @return
      */
     public boolean isUnderWater() {
-        return currentNode == null ? false : currentNode.isWater();
+        return currentNode == null || nextNode == null
+                ? false
+                : currentNode.isWater() || nextNode.isWater();
+    }
+
+    private float getPercentageOfNodeTraversalConcluded() {
+        float totalDistance2 = currentNode.getPosition()
+                .dst2(nextNode.getPosition());
+        float remainingDistance2 = position.coords.dst2(nextNode.getPosition());
+        return (totalDistance2 - remainingDistance2) / totalDistance2;
+    }
+
+    public float getUnderWaterLevel() {
+        if (currentNode != null && nextNode != null) {
+            if (currentNode.isWater() && nextNode.isWater()) {
+                // vai continuar na água
+                return 1;
+            } else if (currentNode.isWater() && !nextNode.isWater()) {
+                // está saindo da água
+                return 1 - getPercentageOfNodeTraversalConcluded();
+            } else if (nextNode.isWater() && !currentNode.isWater()) {
+                // está entrando na água
+                return getPercentageOfNodeTraversalConcluded();
+            }
+        }
+        return 0;
     }
 
     /**
      * Retorna as métricas da última execução do algoritmo de planejamento de
      * trajetórias.
+     *
      * @return as métricas.
      */
     public Metrics getPathFindingMetrics() {

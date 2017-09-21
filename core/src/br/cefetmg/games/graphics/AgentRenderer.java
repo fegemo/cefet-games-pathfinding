@@ -18,15 +18,15 @@ public class AgentRenderer {
     private final SpriteBatch batch;
     private final Camera camera;
     private final OrientedCharacterSprite sprite;
-    
+
     // tamanho dos quadros da animação (40x40)
     private static final int FRAME_WIDTH = 40;
     private static final int FRAME_HEIGHT = FRAME_WIDTH;
-    
+
     // um deslocamento em Y para que o personagem fique alinhado à altura 
     // da ponte
     private static final int POSITION_OFFSET_Y = FRAME_HEIGHT / 2;        // 20
-    
+
     // quanto para baixo ele é desenhado quando na água
     private static final int POSITION_WATER_OFFSET_Y = FRAME_HEIGHT / 8;  // 5
     // quanto do corpo aparece molhado quanto está na água
@@ -63,16 +63,19 @@ public class AgentRenderer {
         //   2. desenhamos a metade de cima dele, normal
         //   3. desenhamos a metade de baixo com a cor azulada
         if (agent.isUnderWater()) {
+            // verifica qtos % do trajeto para a água o agente está
+            float currentDepth = agent.getUnderWaterLevel();
             // desloca para baixo
-            sprite.translateY(-POSITION_WATER_OFFSET_Y);
+            sprite.translateY(-POSITION_WATER_OFFSET_Y * currentDepth);
 
             // vamos desenhar apenas a metade de cima do agente
             Gdx.gl20.glEnable(GL20.GL_SCISSOR_TEST);
             Gdx.gl20.glScissor(
                     (int) sprite.getX(),
-                    (int) sprite.getY() + UNDERWATER_HEIGHT_PORTION,
-                    FRAME_WIDTH,                                // 40
-                    FRAME_HEIGHT - UNDERWATER_HEIGHT_PORTION);  // 30
+                    (int) (sprite.getY() + UNDERWATER_HEIGHT_PORTION * currentDepth),
+                    FRAME_WIDTH,
+                    (int) (FRAME_HEIGHT - UNDERWATER_HEIGHT_PORTION * currentDepth)
+            );
             batch.begin();
             sprite.draw(batch);
             batch.end();
@@ -82,7 +85,7 @@ public class AgentRenderer {
                     (int) sprite.getX(),
                     (int) sprite.getY(),
                     FRAME_WIDTH,
-                    UNDERWATER_HEIGHT_PORTION);
+                    (int) (UNDERWATER_HEIGHT_PORTION * currentDepth));
             Gdx.gl.glEnable(GL20.GL_BLEND);
             batch.setColor(0, 0, 1, 0.5f);
             batch.begin();
