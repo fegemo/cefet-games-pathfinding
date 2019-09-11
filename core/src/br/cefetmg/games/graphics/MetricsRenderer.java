@@ -46,9 +46,9 @@ public class MetricsRenderer {
         batch.begin();
         font.draw(batch, String.format("Total de nós: %d", totalNodes), initialX,
                 initialY + fontHeight);
-        font.draw(batch, String.format("Nós visitados: %d (%.2f%%)",
-                metrics.visitedNodes,
-                (((float) metrics.visitedNodes * 100) / totalNodes)),
+        font.draw(batch, String.format("Nós vasculhados: %d (%.2f%%)",
+                metrics.openListAdditions,
+                (((float) metrics.openListAdditions * 100) / totalNodes)),
                 initialX, initialY);
         batch.end();
     }
