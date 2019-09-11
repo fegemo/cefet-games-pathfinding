@@ -103,7 +103,7 @@ public class Agent {
         if (targetNode == null) {
             return;
         }
-        
+
         path.clear();
         pathFinder.metrics.reset();
         // AQUI ESTAMOS CHAMANDO O ALGORITMO A* (instância pathFinder) 
@@ -112,7 +112,11 @@ public class Agent {
 
             @Override
             public float estimate(TileNode n, TileNode n1) {
-                return 0;
+                throw new UnsupportedOperationException("BOOOOMMM!!!!!!!!"
+                        + "Deveria ter retornado "
+                        + "um valor para a heurística no arquivo "
+                        + "Agent.java:107, mas o professor resolveu explodir "
+                        + "o programa e deixar você consertar ;)");
             }
         }, path);
         pathIterator = path.iterator();
