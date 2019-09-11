@@ -3,6 +3,7 @@ package br.cefetmg.games;
 import br.cefetmg.games.graphics.GraphRenderer;
 import br.cefetmg.games.graphics.AgentRenderer;
 import br.cefetmg.games.graphics.MetricsRenderer;
+import br.cefetmg.games.graphics.SeamlessOrthogonalTiledMapRenderer;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -18,7 +19,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class HunterHunterGame extends ApplicationAdapter {
@@ -53,14 +55,15 @@ public class HunterHunterGame extends ApplicationAdapter {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 
-        camera = new OrthographicCamera();
+        camera = new OrthographicCamera(w,h);
         camera.translate(w / 2, h / 2);
         camera.update();
-        viewport = new ScreenViewport(camera);
+        viewport = new ExtendViewport(1280, 448, camera);
+        batch.setProjectionMatrix(viewport.getCamera().combined);
 
         // Carrega o mapa
         tiledMap = LevelManager.LoadLevel("greed-island.tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, batch);
+        tiledMapRenderer = new SeamlessOrthogonalTiledMapRenderer(tiledMap, batch);
         graphRenderer = new GraphRenderer(batch, shapeRenderer);
         graphRenderer.renderGraphToTexture(LevelManager.graph);
 
@@ -109,9 +112,12 @@ public class HunterHunterGame extends ApplicationAdapter {
 
             @Override
             public boolean touchDown(int x, int y, int pointer, int button) {
+                // Passa as coordenadas do click do sistema da janela para 
+                // o mundo, "desprojetando" (multiplicando pela inversa da 
+                // matriz de projeção)
                 Vector2 clique = new Vector2(x, y);
                 viewport.unproject(clique);
-
+                
                 // Botão ESQUERDO: posiciona objetivo
                 if (button == Input.Buttons.LEFT) {
                     agent.setGoal((int) clique.x, (int) clique.y);
@@ -144,16 +150,17 @@ public class HunterHunterGame extends ApplicationAdapter {
 
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
-        agentRenderer.render(agent);
-        if (showingMetrics) {
-            metricsRenderer.render(agent.getPathFindingMetrics(),
-                    LevelManager.graph.getNodeCount());
-        }
-
+        
         if (debugMode) {
             batch.begin();
             graphRenderer.renderOffScreenedGraph();
             batch.end();
+        }
+
+        agentRenderer.render(agent);
+        if (showingMetrics) {
+            metricsRenderer.render(agent.getPathFindingMetrics(),
+                    LevelManager.graph.getNodeCount());
         }
 
         Gdx.graphics.setTitle(

@@ -17,7 +17,7 @@ public class LevelManager {
     public static int verticalTiles;
     public static int totalPixelWidth;
     public static int totalPixelHeight;
-    public static final int maxCost = 9;
+    public static final int MAX_EDGE_COST = 9;
     public static TiledMap tiledMap;
     public static TileGraph graph;
     

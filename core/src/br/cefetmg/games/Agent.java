@@ -68,7 +68,7 @@ public class Agent {
                 steeringTarget.coords = nextNode.getPosition();
 
                 // atualiza a velocidade do "seek" de acordo com o terreno (a conexão)
-                this.seek.maxSpeed = fullSpeed - (fullSpeed / 2.0f) * (nextConnection.getCost() - 1) / (LevelManager.maxCost - 1);
+                this.seek.maxSpeed = fullSpeed - (fullSpeed / 2.0f) * (nextConnection.getCost() - 1) / (LevelManager.MAX_EDGE_COST - 1);
             }
         } else if (position.coords.dst2(steeringTarget.coords) < MIN_DISTANCE_CONSIDERED_ZERO_SQUARED * 6) {
             currentNode = nextNode;
@@ -100,6 +100,10 @@ public class Agent {
         TileNode targetNode = LevelManager.graph
                 .getNodeAtCoordinates(x, y);
 
+        if (targetNode == null) {
+            return;
+        }
+        
         path.clear();
         pathFinder.metrics.reset();
         // AQUI ESTAMOS CHAMANDO O ALGORITMO A* (instância pathFinder) 
@@ -108,10 +112,7 @@ public class Agent {
 
             @Override
             public float estimate(TileNode n, TileNode n1) {
-                throw new UnsupportedOperationException("Deveria ter retornado "
-                        + "um valor para a heurística no arquivo "
-                        + "Agent.java:107, mas o professor resolveu explodir "
-                        + "o programa e deixar você consertar ;)"); 
+                return 0;
             }
         }, path);
         pathIterator = path.iterator();
