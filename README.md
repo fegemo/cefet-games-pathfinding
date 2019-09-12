@@ -23,6 +23,13 @@ atividade. Você deve implementar 3 heurísticas para o algoritmo A*:
 1. Uma heurística "nula", que transforme o A* no Dijkstra
 2. A heurística de distância Euclidiana
 3. (Opcional) Uma outra heurística à sua escolha (e pesquisa ;)
+   - Boa referência para pesquisa: [página do Amit][amit]
+4. (Opcional) Baixar o [Tiled][tiled] e modificar o arquivo do mapa 
+   (`core/assets/greed-island.tmx`) de alguma forma, para ver como o editor
+   de mapas funciona
+
+[amit]: http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html#heuristics-for-grid-maps
+[tiled]: https://mapeditor.org
 
 ## Sobre o código
 
@@ -154,7 +161,7 @@ função heurística que você implementou não está admissível. Neste caso,
 reveja o conceito de admissibilidade e conserte-a =). Uma ótima fonte
 de estudo é a [explicação do Amit Patel sobre as heurísticas do A*][amit].
 
-[amit]: http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
+[amit]: http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html#heuristics-for-grid-maps
 
 ---
 ## Entrega
